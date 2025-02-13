@@ -1,16 +1,13 @@
 package main
 
-package main
-
 import (
-    "fmt"
-    "net/http"
-    "github.com/Madhan9985/Project/database"
-    "github.com/Madhan9985/Project/handlers"
-    "github.com/Madhan9985/Project/models"
-    "github.com/gorilla/mux"
-)
+	"fmt"
+	"net/http"
 
+	"github.com/Madhan9985/Project/database"
+	"github.com/Madhan9985/Project/handlers"
+	"github.com/gorilla/mux"
+)
 
 func main() {
 	database.InitDB()
@@ -22,4 +19,5 @@ func main() {
 	r.HandleFunc("/todos/{id}", handlers.DeleteTodo).Methods("DELETE")
 
 	fmt.Println("Server is running on port 8080...")
-	http
+	http.ListenAndServe(":8080", r)
+}
