@@ -1,25 +1,25 @@
 package main
 
+package main
+
 import (
-	"fmt"
-	"log"
-	"net/http"
-	"github.com/gorilla/mux"
-	"github.com/yourusername/Project/database"
-	"github.com/yourusername/Project/routes"
+    "fmt"
+    "net/http"
+    "github.com/Madhan9985/Project/database"
+    "github.com/Madhan9985/Project/handlers"
+    "github.com/Madhan9985/Project/models"
+    "github.com/gorilla/mux"
 )
 
+
 func main() {
-	// Initialize the database
 	database.InitDB()
 
-	// Create a new router
 	r := mux.NewRouter()
+	r.HandleFunc("/todos", handlers.GetTodos).Methods("GET")
+	r.HandleFunc("/todos", handlers.CreateTodo).Methods("POST")
+	r.HandleFunc("/todos/{id}", handlers.UpdateTodo).Methods("PUT")
+	r.HandleFunc("/todos/{id}", handlers.DeleteTodo).Methods("DELETE")
 
-	// Register routes
-	routes.RegisterTaskRoutes(r)
-
-	// Start the server
-	fmt.Println("Server started on :8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
-}
+	fmt.Println("Server is running on port 8080...")
+	http
